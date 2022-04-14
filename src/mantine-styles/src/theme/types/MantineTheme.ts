@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react';
 import type { MantineSizes, MantineSize, MantineNumberSize } from './MantineSize';
 import type { DeepPartial } from './DeepPartial';
 import type { MantineThemeColors } from './MantineColor';
+import type { MantineColors } from '../_default-colors';
 
 export type LoaderType = 'bars' | 'oval' | 'dots';
 export type MantineThemeOther = Record<string, any>;
@@ -37,6 +38,7 @@ export interface MantineTheme {
   white: string;
   black: string;
   colors: MantineThemeColors;
+  _colors: MantineColors;
   fontFamily: CSSProperties['fontFamily'];
   lineHeight: CSSProperties['lineHeight'];
   transitionTimingFunction: CSSProperties['transitionTimingFunction'];

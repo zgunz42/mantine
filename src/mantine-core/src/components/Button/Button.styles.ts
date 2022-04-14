@@ -6,6 +6,7 @@ import {
   getSharedColorScheme,
   MantineColor,
   MantineTheme,
+  CSSObject,
 } from '@mantine/styles';
 import { INPUT_SIZES } from '../Input';
 
@@ -99,29 +100,56 @@ const getWidthStyles = (fullWidth: boolean) => ({
   width: fullWidth ? '100%' : 'auto',
 });
 
-interface GetVariantStyles {
-  theme: MantineTheme;
-  color: MantineColor;
-  variant: ButtonVariant;
-}
+function getVariantStyles(theme: MantineTheme, variant: ButtonVariant): CSSObject {
+  if (variant === 'filled') {
+    return {
+      backgroundColor: theme._colors.groups.blue[theme.colorScheme].base,
+      color: '#fff',
+      borderColor: 'transparent',
 
-function getVariantStyles({ variant, theme, color }: GetVariantStyles) {
-  const colors = getSharedColorScheme({
-    theme,
-    color,
-    variant,
-  });
+      '&:hover': {
+        backgroundColor: theme._colors.groups.blue[theme.colorScheme].baseHover,
+      },
+    };
+  }
 
-  return {
-    border: `1px solid ${colors.border}`,
-    backgroundColor: colors.background,
-    backgroundImage: colors.background,
-    color: colors.color,
+  if (variant === 'light') {
+    return {
+      backgroundColor: theme._colors.groups.blue[theme.colorScheme].subtle,
+      color: theme._colors.groups.blue[theme.colorScheme].text,
+      borderColor: 'transparent',
 
-    '&:hover': {
-      backgroundColor: colors.hover,
-    },
-  };
+      '&:hover': {
+        backgroundColor: theme._colors.groups.blue[theme.colorScheme].subtleHover,
+      },
+    };
+  }
+
+  if (variant === 'outline') {
+    return {
+      backgroundColor: 'transparent',
+      color: theme._colors.groups.blue[theme.colorScheme].outline,
+      border: `1px solid ${theme._colors.groups.blue[theme.colorScheme].outline}`,
+
+      '&:hover': {
+        backgroundColor: theme._colors.groups.blue[theme.colorScheme].outlineHover,
+      },
+    };
+  }
+
+  if (variant === 'default') {
+    return {
+      backgroundColor: theme._colors.base[theme.colorScheme].body,
+      border: `1px solid ${theme._colors.base[theme.colorScheme].border}`,
+      color: theme._colors.base[theme.colorScheme].text,
+
+      '&:hover': {
+        backgroundColor: theme._colors.base[theme.colorScheme].subtle,
+      },
+    };
+  }
+
+  return {};
 }
 
 export default createStyles(
@@ -167,12 +195,15 @@ export default createStyles(
         },
       },
 
-      outline: getVariantStyles({ variant: 'outline', theme, color }),
-      filled: getVariantStyles({ variant: 'filled', theme, color }),
-      light: getVariantStyles({ variant: 'light', theme, color }),
-      default: getVariantStyles({ variant: 'default', theme, color }),
-      white: getVariantStyles({ variant: 'white', theme, color }),
-      subtle: getVariantStyles({ variant: 'subtle', theme, color }),
+      // outline: getVariantStyles({ variant: 'outline', theme, color }),
+      filled: getVariantStyles(theme, 'filled'),
+      light: getVariantStyles(theme, 'light'),
+      outline: getVariantStyles(theme, 'outline'),
+      default: getVariantStyles(theme, 'default'),
+      // light: getVariantStyles({ variant: 'light', theme, color }),
+      // default: getVariantStyles({ variant: 'default', theme, color }),
+      // white: getVariantStyles({ variant: 'white', theme, color }),
+      // subtle: getVariantStyles({ variant: 'subtle', theme, color }),
 
       gradient: {
         border: 0,

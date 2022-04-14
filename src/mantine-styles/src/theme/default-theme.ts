@@ -1,6 +1,7 @@
 import { MantineThemeBase } from './types';
 import { DEFAULT_COLORS } from './default-colors';
 import { attachFunctions } from './functions/attach-functions';
+import { COLORS } from './_default-colors';
 
 export const MANTINE_COLORS = Object.keys(DEFAULT_COLORS);
 export const MANTINE_SIZES = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
@@ -16,6 +17,7 @@ export const _DEFAULT_THEME: MantineThemeBase = {
   defaultRadius: 'sm',
   transitionTimingFunction: 'ease',
   colors: DEFAULT_COLORS,
+  _colors: COLORS,
   lineHeight: 1.55,
   fontFamily:
     '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji',

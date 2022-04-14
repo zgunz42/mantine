@@ -5,8 +5,6 @@ import {
   MantineSizes,
   getSharedColorScheme,
   MantineColor,
-  MantineTheme,
-  CSSObject,
 } from '@mantine/styles';
 import { INPUT_SIZES } from '../Input';
 
@@ -100,58 +98,6 @@ const getWidthStyles = (fullWidth: boolean) => ({
   width: fullWidth ? '100%' : 'auto',
 });
 
-function getVariantStyles(theme: MantineTheme, variant: ButtonVariant): CSSObject {
-  if (variant === 'filled') {
-    return {
-      backgroundColor: theme._colors.groups.blue[theme.colorScheme].base,
-      color: '#fff',
-      borderColor: 'transparent',
-
-      '&:hover': {
-        backgroundColor: theme._colors.groups.blue[theme.colorScheme].baseHover,
-      },
-    };
-  }
-
-  if (variant === 'light') {
-    return {
-      backgroundColor: theme._colors.groups.blue[theme.colorScheme].subtle,
-      color: theme._colors.groups.blue[theme.colorScheme].text,
-      borderColor: 'transparent',
-
-      '&:hover': {
-        backgroundColor: theme._colors.groups.blue[theme.colorScheme].subtleHover,
-      },
-    };
-  }
-
-  if (variant === 'outline') {
-    return {
-      backgroundColor: 'transparent',
-      color: theme._colors.groups.blue[theme.colorScheme].outline,
-      border: `1px solid ${theme._colors.groups.blue[theme.colorScheme].outline}`,
-
-      '&:hover': {
-        backgroundColor: theme._colors.groups.blue[theme.colorScheme].outlineHover,
-      },
-    };
-  }
-
-  if (variant === 'default') {
-    return {
-      backgroundColor: theme._colors.base[theme.colorScheme].body,
-      border: `1px solid ${theme._colors.base[theme.colorScheme].border}`,
-      color: theme._colors.base[theme.colorScheme].text,
-
-      '&:hover': {
-        backgroundColor: theme._colors.base[theme.colorScheme].subtle,
-      },
-    };
-  }
-
-  return {};
-}
-
 export default createStyles(
   (
     theme,
@@ -195,13 +141,10 @@ export default createStyles(
         },
       },
 
-      // outline: getVariantStyles({ variant: 'outline', theme, color }),
-      filled: getVariantStyles(theme, 'filled'),
-      light: getVariantStyles(theme, 'light'),
-      outline: getVariantStyles(theme, 'outline'),
-      default: getVariantStyles(theme, 'default'),
-      // light: getVariantStyles({ variant: 'light', theme, color }),
-      // default: getVariantStyles({ variant: 'default', theme, color }),
+      filled: theme.fn.variant('filled', color, { hover: true }),
+      light: theme.fn.variant('light', color, { hover: true }),
+      outline: theme.fn.variant('outline', color, { hover: true }),
+      default: theme.fn.variant('default', color, { hover: true }),
       // white: getVariantStyles({ variant: 'white', theme, color }),
       // subtle: getVariantStyles({ variant: 'subtle', theme, color }),
 

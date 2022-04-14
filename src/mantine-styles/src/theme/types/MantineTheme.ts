@@ -2,6 +2,8 @@ import type { CSSProperties } from 'react';
 import type { MantineSizes, MantineSize, MantineNumberSize } from './MantineSize';
 import type { DeepPartial } from './DeepPartial';
 import type { MantineThemeColors } from './MantineColor';
+import type { MantineColor, MantineColorShape, MantineBaseColorShape } from './MantineColors';
+import type { MantineColorVariant } from './MantineColorVariant';
 import type { MantineColors } from '../_default-colors';
 
 export type LoaderType = 'bars' | 'oval' | 'dots';
@@ -26,6 +28,9 @@ interface MantineThemeFunctions {
   lighten(color: string, alpha: number): string;
   darken(color: string, alpha: number): string;
   radius(size: MantineNumberSize | (string & {})): string | number;
+  color(color: MantineColor, key: keyof MantineColorShape, fallback?: boolean): string;
+  baseColor(key: keyof MantineBaseColorShape): string;
+  variant(_variant: MantineColorVariant, color: MantineColor, options?: { hover: boolean }): any;
 }
 
 export interface MantineTheme {

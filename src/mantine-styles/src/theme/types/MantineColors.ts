@@ -1,4 +1,4 @@
-type MantineColor = 'blue' | (string & {});
+export type MantineColor = 'blue' | (string & {});
 
 export interface MantineBaseColorShape {
   /** Base text color, added to body element, default color is very dark gray */
@@ -49,7 +49,7 @@ export interface MantineColorShape {
   focus: string;
 }
 
-interface MantineBaseColors {
+export interface MantineBaseColors {
   light: MantineBaseColorShape;
   dark: MantineBaseColorShape;
 }
@@ -59,62 +59,8 @@ export type MantineColorsGroups = Record<
   { light: MantineColorShape; dark: MantineColorShape }
 >;
 
-export const DEFAULT_BASE_COLORS: MantineBaseColors = {
-  light: {
-    body: '#FFFFFF',
-    text: '#343A40',
-    textDimmed: '#868E96',
-    textBright: '#000000',
-    fill: '#E9ECEF',
-    subtle: '#F8F9FA',
-    border: '#CED4DA',
-  },
-
-  dark: {
-    body: '#1A1B1E',
-    text: '#C1C2C5',
-    textDimmed: '#909296',
-    textBright: '#FFFFFF',
-    fill: '#2C2E33',
-    subtle: '#25262B',
-    border: '#535760',
-  },
-};
-
-export const DEFAULT_COLORS: MantineColorsGroups = {
-  blue: {
-    light: {
-      text: '#1C7ED6',
-      outline: '#1C7ED6',
-      base: '#228BE6',
-      baseHover: '#1C7ED6',
-      subtle: '#E7F5FF',
-      subtleHover: 'rgba(208, 235, 255, 0.65)',
-      outlineHover: 'rgba(231, 245, 255, 0.35)',
-      focus: '#4DABF7',
-    },
-
-    dark: {
-      text: '#87c6f9',
-      outline: '#47a5ef',
-      base: '#147CD6',
-      baseHover: '#1782DF',
-      subtleHover: 'rgba(0, 85, 164, 0.45)',
-      outlineHover: 'rgba(0, 85, 164, 0.15)',
-      subtle: 'rgba(0, 85, 164, 0.35)',
-      focus: '#4DABF7',
-    },
-  },
-};
-
 export interface MantineColors {
   primaryColor: MantineColor;
   base: MantineBaseColors;
   groups: MantineColorsGroups;
 }
-
-export const COLORS: MantineColors = {
-  primaryColor: 'blue',
-  base: DEFAULT_BASE_COLORS,
-  groups: DEFAULT_COLORS,
-};
